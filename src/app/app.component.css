@@ -1,0 +1,24 @@
+.negrita {
+    background-color: rgb(255, 196, 196);
+}
+
+.negrita > td {
+    font-weight: bold;
+}
+
+.negita-light {
+    background-color: rgb(255, 229, 213);
+}
+
+.negita-light > td {
+    font-weight: 300;
+}
+
+thead {
+    position: sticky;
+    top: 0;
+}
+
+td, th {
+    text-align: right;
+}

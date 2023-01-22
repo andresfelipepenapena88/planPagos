@@ -1,0 +1,77 @@
+<div class="container-fluid">
+  <div class="row mt-3">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="text-center"><b>Primera Cuota</b></h3>
+          <form [formGroup]="form" (ngSubmit)="calcular()">
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <label for="monto" class="form-label">Monto Prestado: </label>
+                <input type="number" id="monto" class="form-control" formControlName="monto">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="plazo" class="form-label">Plazo: </label>
+                <input type="number" id="plazo" class="form-control" formControlName="plazo">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="cuota" class="form-label">Valor Cuota: </label>
+                <input type="number" id="cuota" class="form-control" formControlName="cuota">
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="intereses" class="form-label">Intereses Cuota: </label>
+                <input type="number" id="intereses" class="form-control" formControlName="intereses">
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="seguro" class="form-label">Valor Seguro: </label>
+                <input type="number" id="seguro" class="form-control" formControlName="seguro">
+              </div>
+              <div class="col-md-12">
+                <div class="d-grid gap-2">
+                  <button type="submit" class="btn btn-primary btn-lg">Calcular</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <table class="table">
+            <thead class="table-light">
+              <tr>
+                <th>Cuota #</th>
+                <th>Seguro</th>
+                <th>Intereses</th>
+                <th>Abono Capital</th>
+                <th>Cuota</th>
+                <th>Saldo Capital</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cuota of cuotas" [ngClass]="{ 'negrita': cuota.numeroCuota == -1, 'negita-light': cuota.numeroCuota == -2 }">
+                <td> {{ cuota.numeroCuota == -1 || cuota.numeroCuota == -2 ? '-' : cuota.numeroCuota }} </td>
+                <td> {{ cuota.seguro | copFormat }} </td>
+                <td> {{ cuota.intereses | copFormat }} </td>
+                <td> {{ cuota.abono | copFormat }} </td>
+                <td> {{ cuota.cuota | copFormat }} </td>
+                <td> {{ cuota.saldo | copFormat }} </td>
+              </tr>
+              <tr *ngIf="cuotas.length > 0" class="negrita">
+                <td> {{ cuotas.length }} </td>
+                <td> {{ countSeguro | copFormat }} </td>
+                <td> {{ countIntereses | copFormat }} </td>
+                <td> {{ countAbono | copFormat }} </td>
+                <td> {{ countCuota | copFormat }} </td>
+                <td> {{ decountSaldo | copFormat }} </td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
